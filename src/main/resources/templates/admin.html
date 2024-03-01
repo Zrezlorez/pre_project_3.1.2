@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    div {
+        margin-bottom: 15px
+    }
+</style>
+<body>
+<div>
+    <table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Password</th>
+        <th>Age</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td><span th:text="${user.getId()}"></span></td>
+        <td><span th:text="${user.getName()}"></span></td>
+        <td><span th:text="${user.getPassword()}"></span></td>
+        <td><span th:text="${user.getAge()}"></span></td>
+        <td><a th:href="@{admin/edit(id=${user.getId()})}">Edit</a></td>
+        <td>
+            <form action="/" th:action="@{admin/delete(id=${user.getId()})}" method="post">
+            <button>Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    <button type="button" onclick="window.add.showModal()">
+        Add new
+    </button>
+    <dialog id="add">
+        <form action="admin/add" method="post">
+            <div>
+                <label for="name"><b>Name</b></label>
+                <input type="text" name="name" id="name"/>
+            </div>
+            <div>
+                <label for="password"><b>Password</b></label>
+                <input type="text" name="password" id="password"/>
+            </div>
+            <div>
+                <label for="age"><b>Age</b></label>
+                <input type="number" name="age" id="age"/>
+            </div>
+            <input type="submit" value="Save" onclick="window.add.close()"/>
+        </form>
+        <button type="button" onclick="window.add.close()">
+            Cancel
+        </button>
+    </dialog>
+    <a class="btn btn-light" role="button" href="/logout">Log out</a>
+</div>
+</body>
+</html>

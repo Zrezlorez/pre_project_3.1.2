@@ -4,8 +4,25 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1>User, welcome spring boot security page!</h1>
 
+<h1>Current user</h1>
 
+<div>
+    <label for="id"><b>Id</b></label>
+    <input type="text" name="id" id="id" disabled th:value="${user.getId()}"/>
+</div>
+<div>
+    <label for="name"><b>Name</b></label>
+    <input type="text" name="user" id="name" disabled th:value="${user.getName()}"/>
+</div>
+<div>
+    <label for="lastName"><b>Last Name</b></label>
+    <input type="text" name="password" id="lastName" disabled th:value="${user.getPassword()}"/>
+</div>
+<div>
+    <label for="age"><b>Age</b></label>
+    <input type="number" name="age" id="age" disabled th:value="${user.getAge()}"/>
+</div>
+<a class="btn btn-light" role="button" href="/logout">Log out</a>
 </body>
 </html>
